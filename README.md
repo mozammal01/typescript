@@ -1,4 +1,4 @@
-Ans. to the question no. 2
+# What is the use of the keyof keyword in TypeScript? Provide an example.
 
 typescript এ keyof এর কাজ হলো value টা কোন ধরণের type তা সংজ্ঞায়িত করা করা । যেমন  : 
 
@@ -7,7 +7,7 @@ typeof value === "string" ? value.toUpperCase() : value;
 এখানে আমরা typeof দিয়ে চেক করলাম যে value টা কোন ধরণের type । যদি value টা string হয় তাহলে value টা কে uppercase করে দিবে আর না হলে value টা কে return করে দিবে ।
 
 
-Ans. to the question no. 3
+# Explain the difference between any, unknown, and never types in TypeScript.
 
 any,unknown,never এগুলো হলো typescript এর কিছু টাইপ । যেগুলোর মাধ্যমে value এর টাইপ সংজ্ঞায়িত করা যায় ।
 
