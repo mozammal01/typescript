@@ -1,5 +1,8 @@
 // Problem 1 Solution
-const formatValue = (value: string | number | boolean) => {
+
+type Value = string | number | boolean;
+
+const formatValue = (value: Value): Value => {
   if (typeof value === "string") {
     return value.toUpperCase();
   } else if (typeof value === "number") {
@@ -7,21 +10,29 @@ const formatValue = (value: string | number | boolean) => {
   } else if (typeof value === "boolean") {
     return !value;
   } else {
-    return "This is not a string, number, or boolean";
+    return "Wrong Input";
   }
 };
 
+// console.log(formatValue('hello'));
+// console.log(formatValue(5));
+// console.log(formatValue(true));
+
 // Problem 2 Solution
 
-const getLength = (value: string | (number | string | boolean)[]) => {
+const getLength = <T>(value: string | T[]) => {
   if (Array.isArray(value)) {
     return value.length;
   } else if (typeof value === "string") {
     return value.length;
   } else {
-    return "This is not a string or array";
+    return "Wrong Input";
   }
 };
+
+// console.log(getLength('typescript'));
+// console.log(getLength([10, 20, 30, 40]));
+
 
 // Problem 3 Solution
 
@@ -32,40 +43,51 @@ class Person {
     this.name = name;
     this.age = age;
   }
-  getDetails() {
+  getDetails(): string {
     return `'Name: ${this.name}, Age: ${this.age}'`;
   }
 }
 
-const person = new Person("John", 30);
-// console.log(person.getDetails());
+// const person1 = new Person('John Doe', 30);
+// console.log(person1.getDetails());
 
+// const person2 = new Person('Alice', 25);
+// console.log(person2.getDetails());
 
 // Problem 4 Solution
 
-const myBooks = [
-  { title: "Book A", rating: 4.5 },
-  { title: "Book B", rating: 3.2 },
-  { title: "Book C", rating: 5.0 },
+type BookType = {
+  title: string;
+  rating: number;
+};
+
+const filterByRating = (books: BookType[]): BookType[] => {
+  const newArray = books.filter((book) => book.rating > 0 && book.rating <= 5 && book.rating >= 4);
+  return newArray;
+};
+
+const books = [
+  { title: 'Book A', rating: 4.5 },
+  { title: 'Book B', rating: 3.2 },
+  { title: 'Book C', rating: 5.0 },
 ];
 
-const getHighestRatedBook = (books: { title: string; rating: number }[]) => {
-  const highestRatedBook = books.filter((book) => book.rating > 4);
-  return highestRatedBook;
-};
+// console.log(filterByRating(books));
 
 // Problem 5 Solution
 
-const users = [
-  { id: 1, name: "Rakib", email: "rakib@example.com", isActive: true },
-  { id: 2, name: "Asha", email: "asha@example.com", isActive: false },
-  { id: 3, name: "Rumi", email: "rumi@example.com", isActive: true },
-];
+type UserType = {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+};
 
-const filterActiveUsers = (users: { id: number; name: string; email: string; isActive: boolean }[]) => {
+const filterActiveUsers = (users: UserType[]): UserType[] => {
   const activeUsers = users.filter((user) => user.isActive);
   return activeUsers;
 };
+
 
 // Problem 6 Solution
 
@@ -76,25 +98,15 @@ interface Book {
   isAvailable: boolean;
 }
 
-const printBookDetails = (book: Book) => {
+const printBookDetails = (book: Book): string => {
   if (book.isAvailable) {
     return `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`;
+  } else {
+    return "Wrong Input";
   }
 };
 
-const myBook = {
-  title: "The Great Gatsby",
-  author: "F. Scott Fitzgerald",
-  publishedYear: 1925,
-  isAvailable: true,
-};
-
-// console.log(printBookDetails(myBook));
-
 // Problem 7 Solution
-
-const array1 = [1, 2, 3, 4, 5];
-const array2 = [3, 4, 5, 6, 7];
 
 type UniqueValues = number[] | string[];
 
@@ -103,20 +115,34 @@ const getUniqueValues = (array1: UniqueValues, array2: UniqueValues) => {
   return newArray;
 };
 
-// console.log(getUniqueValues(array1, array2));
-
 // Problem 8 Solution
+  
+type ProductType = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+const calculateTotalPrice = (products: ProductType[]): number => {
+  return products.reduce((acc, product) => {
+    if (product.discount && (product.discount <= 0 || product.discount >= 100)) {
+      console.error("Discount is out of range");
+      acc = 0;
+      return acc;
+    } else if (product.discount) {
+      const discount = ((product.price * product.quantity) / 100) * product.discount;
+      return acc + product.price * product.quantity - discount;
+    } else {
+      return acc + product.price * product.quantity;
+    }
+  }, 0);
+};
 
 const products = [
   { name: "Pen", price: 10, quantity: 2 },
   { name: "Notebook", price: 25, quantity: 3, discount: 10 },
-  { name: "Bag", price: 50, quantity: 1, discount: 20 },
+  { name: "Bag", price: 50, quantity: 1, discount: 200 },
 ];
-const calculateTotalPrice = (products) => {
-  return products.reduce((acc, product) => {
-    // return acc + (product.price * product.quantity) - (product.discount || 0);
-    return acc + product.price * product.quantity;
-  }, 0);
-};
 
 console.log(calculateTotalPrice(products));
