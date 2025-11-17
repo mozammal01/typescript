@@ -1,5 +1,3 @@
-// Problem 1 Solution
-
 type Value = string | number | boolean;
 
 const formatValue = (value: Value): Value => {
@@ -14,11 +12,6 @@ const formatValue = (value: Value): Value => {
   }
 };
 
-// console.log(formatValue('hello'));
-// console.log(formatValue(5));
-// console.log(formatValue(true));
-
-// Problem 2 Solution
 
 const getLength = <T>(value: string | T[]) => {
   if (Array.isArray(value)) {
@@ -30,11 +23,8 @@ const getLength = <T>(value: string | T[]) => {
   }
 };
 
-// console.log(getLength('typescript'));
-// console.log(getLength([10, 20, 30, 40]));
 
 
-// Problem 3 Solution
 
 class Person {
   name: string;
@@ -48,13 +38,8 @@ class Person {
   }
 }
 
-// const person1 = new Person('John Doe', 30);
-// console.log(person1.getDetails());
 
-// const person2 = new Person('Alice', 25);
-// console.log(person2.getDetails());
 
-// Problem 4 Solution
 
 type BookType = {
   title: string;
@@ -72,9 +57,9 @@ const books = [
   { title: 'Book C', rating: 5.0 },
 ];
 
-// console.log(filterByRating(books));
 
-// Problem 5 Solution
+
+
 
 type UserType = {
   id: number;
@@ -89,7 +74,7 @@ const filterActiveUsers = (users: UserType[]): UserType[] => {
 };
 
 
-// Problem 6 Solution
+
 
 interface Book {
   title: string;
@@ -106,7 +91,7 @@ const printBookDetails = (book: Book): string => {
   }
 };
 
-// Problem 7 Solution
+
 
 type UniqueValues = number[] | string[];
 
@@ -115,8 +100,11 @@ const getUniqueValues = (array1: UniqueValues, array2: UniqueValues) => {
   return newArray;
 };
 
-// Problem 8 Solution
-  
+
+
+
+
+
 type ProductType = {
   name: string;
   price: number;
@@ -142,7 +130,5 @@ const calculateTotalPrice = (products: ProductType[]): number => {
 const products = [
   { name: "Pen", price: 10, quantity: 2 },
   { name: "Notebook", price: 25, quantity: 3, discount: 10 },
-  { name: "Bag", price: 50, quantity: 1, discount: 200 },
+  { name: "Bag", price: 50, quantity: 1, discount: 20 },
 ];
-
-console.log(calculateTotalPrice(products));
