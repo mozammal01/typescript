@@ -1,6 +1,6 @@
 type Value = string | number | boolean;
 
-const formatValue = (value: Value): Value => {
+function formatValue (value: Value): Value {
   if (typeof value === "string") {
     return value.toUpperCase();
   } else if (typeof value === "number") {
@@ -12,7 +12,7 @@ const formatValue = (value: Value): Value => {
   }
 };
 
-const getLength = <T>(value: string | T[]) => {
+function getLength <T>(value: string | T[]): number | string {
   if (Array.isArray(value)) {
     return value.length;
   } else if (typeof value === "string") {
@@ -39,16 +39,16 @@ type BookType = {
   rating: number;
 };
 
-const filterByRating = (books: BookType[]): BookType[] => {
-  const newArray = books.filter((book) => book.rating > 0 && book.rating <= 5 && book.rating >= 4);
+function filterByRating (books: BookType[]): BookType[] {
+  const newArray: BookType[] = [];
+  const filterRating = books.filter((book) => book.rating > 0 && book.rating <= 5);
+  if (filterRating) {
+    const filteredBooks = filterRating.filter((book) => book.rating >= 4);
+    newArray.push(...filteredBooks);
+    return newArray;
+  }
   return newArray;
 };
-
-const books = [
-  { title: "Book A", rating: 4.5 },
-  { title: "Book B", rating: 3.2 },
-  { title: "Book C", rating: 5.0 },
-];
 
 type UserType = {
   id: number;
@@ -57,7 +57,7 @@ type UserType = {
   isActive: boolean;
 };
 
-const filterActiveUsers = (users: UserType[]): UserType[] => {
+function filterActiveUsers (users: UserType[]): UserType[] {
   const newArray: UserType[] = [];
   const activeUsers = users.filter((user) => user.isActive);
   newArray.push(...activeUsers);
@@ -71,20 +71,16 @@ interface Book {
   isAvailable: boolean;
 }
 
-const printBookDetails = (book: Book): string => {
+function printBookDetails (book: Book): string {
   return `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`;
 };
 
-
-
-
 type UniqueValues = number[] | string[];
 
-const getUniqueValues = (array1: UniqueValues, array2: UniqueValues) => {
+function getUniqueValues (array1: UniqueValues, array2: UniqueValues) {
   const newArray = [...new Set([...array1, ...array2])];
   return newArray;
 };
-
 
 
 
@@ -95,7 +91,7 @@ type ProductType = {
   discount?: number;
 };
 
-const calculateTotalPrice = (products: ProductType[]): number => {
+function calculateTotalPrice (products: ProductType[]): number {
   return products.reduce((acc, product) => {
     if (product.discount && (product.discount <= 0 || product.discount >= 100)) {
       console.error("Discount is out of range");
