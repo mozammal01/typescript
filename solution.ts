@@ -12,7 +12,6 @@ const formatValue = (value: Value): Value => {
   }
 };
 
-
 const getLength = <T>(value: string | T[]) => {
   if (Array.isArray(value)) {
     return value.length;
@@ -22,9 +21,6 @@ const getLength = <T>(value: string | T[]) => {
     return "Wrong Input";
   }
 };
-
-
-
 
 class Person {
   name: string;
@@ -38,9 +34,6 @@ class Person {
   }
 }
 
-
-
-
 type BookType = {
   title: string;
   rating: number;
@@ -52,14 +45,10 @@ const filterByRating = (books: BookType[]): BookType[] => {
 };
 
 const books = [
-  { title: 'Book A', rating: 4.5 },
-  { title: 'Book B', rating: 3.2 },
-  { title: 'Book C', rating: 5.0 },
+  { title: "Book A", rating: 4.5 },
+  { title: "Book B", rating: 3.2 },
+  { title: "Book C", rating: 5.0 },
 ];
-
-
-
-
 
 type UserType = {
   id: number;
@@ -69,12 +58,11 @@ type UserType = {
 };
 
 const filterActiveUsers = (users: UserType[]): UserType[] => {
+  const newArray: UserType[] = [];
   const activeUsers = users.filter((user) => user.isActive);
-  return activeUsers;
+  newArray.push(...activeUsers);
+  return newArray;
 };
-
-
-
 
 interface Book {
   title: string;
@@ -84,12 +72,9 @@ interface Book {
 }
 
 const printBookDetails = (book: Book): string => {
-  if (book.isAvailable) {
-    return `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`;
-  } else {
-    return "Wrong Input";
-  }
+  return `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`;
 };
+
 
 
 
@@ -99,8 +84,6 @@ const getUniqueValues = (array1: UniqueValues, array2: UniqueValues) => {
   const newArray = [...new Set([...array1, ...array2])];
   return newArray;
 };
-
-
 
 
 
@@ -126,9 +109,3 @@ const calculateTotalPrice = (products: ProductType[]): number => {
     }
   }, 0);
 };
-
-const products = [
-  { name: "Pen", price: 10, quantity: 2 },
-  { name: "Notebook", price: 25, quantity: 3, discount: 10 },
-  { name: "Bag", price: 50, quantity: 1, discount: 20 },
-];
